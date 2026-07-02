@@ -1,4 +1,4 @@
-name: Run Nova Workflow
+name: Run Soul Workflow
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
     - cron: '*/30 * * * *'
 
 jobs:
-  run_nova_workflow:
+  run_soul_workflow:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,15 +24,15 @@ jobs:
         run: |
           sudo apt update
           sudo apt install golang -y
-
+          
       - name: Make binary executable
-        run: chmod +x soul
-
+        run: chmod +x nova
+        
       - name: Install required packages
         run: |
           python -m pip install --upgrade pip
           pip uninstall telegram -y || true
-          pip install python-telegram-bot==13.15 pymongo psutil aiohttp urllib3==1.26.5 certifi
+          pip install python-telegram-bot==20.7 PyGithub pymongo psutil aiohttp urllib3==1.26.5 certifi
 
       - name: Run soul.py
         run: python3 soul.py
