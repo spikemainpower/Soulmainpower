@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: binary by @TeamNovaDdos
-        run: chmod +x nova
+        run: chmod +x soul
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
