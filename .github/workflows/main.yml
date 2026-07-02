@@ -1,4 +1,4 @@
-name: Run Soul Workflow
+name: Run Nova Workflow
 
 on:
   push:
@@ -13,23 +13,26 @@ jobs:
 
     steps:
       - name: Check out the code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: binary by @TeamNovaDdos
-        run: chmod +x soul
-      - name: Set up Python
-        uses: actions/setup-python@v3
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.11'
 
       - name: Update apt and install Go
         run: |
           sudo apt update
           sudo apt install golang -y
 
+      - name: Make binary executable
+        run: chmod +x soul
+
       - name: Install required packages
         run: |
-          pip install python-telegram-bot==13.15 pymongo psutil aiohttp urllib3==1.26.5
+          python -m pip install --upgrade pip
+          pip uninstall telegram -y || true
+          pip install python-telegram-bot==13.15 pymongo psutil aiohttp urllib3==1.26.5 certifi
 
       - name: Run soul.py
         run: python3 soul.py
