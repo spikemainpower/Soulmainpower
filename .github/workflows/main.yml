@@ -26,7 +26,7 @@ jobs:
           sudo apt install golang -y
           
       - name: Make binary executable
-        run: chmod +x nova
+        run: chmod +x soul
         
       - name: Install required packages
         run: |
